@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Account Creation" icon-name="standard:account">
+      <div class="slds-p-horizontal_small">
+        <lightning-record-form
+          object-api-name={objectApiName}
+          fields={fields}
+          onsuccess={handleAccountCreate}
+        ></lightning-record-form>
+      </div>
+    </lightning-card>
+  </template>

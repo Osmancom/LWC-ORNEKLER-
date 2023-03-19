@@ -1,0 +1,33 @@
+.color-blue {
+    background-color: #08a7da;
+    height: 100px;
+    color: white;
+    font-family: Tahoma;
+    font-size: 30px;
+    font-weight: 500;
+    border-radius: 25px;
+}
+ 
+.color-grey {
+    background-color: grey;
+    height: 100px;
+    color: white;
+    font-family: Tahoma;
+    font-size: 30px;
+    font-weight: 500;
+    border-radius: 25px;
+}
+ 
+.color-green {
+    background-color: #59e0cd;
+    height: 100px;
+    color: white;
+    font-family: Tahoma;
+    font-size: 30px;
+    font-weight: 500;
+    border-radius: 25px;
+}
+
+.titles {
+    font-size: small
+}

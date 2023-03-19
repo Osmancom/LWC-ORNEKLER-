@@ -1,0 +1,23 @@
+<template>
+    <lightning-card> 
+        <lightning-icon icon-name="standard:account"></lightning-icon>
+        <b><h3>Lightning record from with layout type as full</h3></b> 
+        <div class="slds-box">
+        
+            <!-- Write object-api-name directly as text or pass it dynamically from
+             the controller.Both things work-->
+             <!--Make sure you specify layout-type as Full or Compact. it is case sensitive-->
+            <lightning-record-form columns="2"
+                                    object-api-name="Account"
+                                    layout-type="Full"
+                                    onsuccess={handleAccountSuccess}>
+            </lightning-record-form>
+        </div>
+
+
+
+
+
+    </lightning-card>
+    
+</template>

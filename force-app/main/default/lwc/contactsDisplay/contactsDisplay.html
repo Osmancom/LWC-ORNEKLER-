@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-box mainDiv">
+        <h3>Use wire service with property which gives immutable data</h3>
+        <template if:true={contacts.data}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={contacts.data} for:item="con">
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_small" key={con.Id}>
+                        <lightning-card title={con.Name} key={con.Id}>
+                            <lightning-button value={con.Id} onclick={navigateToContactDetail} variant="Success" label="View Details" slot="actions"></lightning-button>
+                            <p class="slds-p-horizontal_small">{con.Phone}</p>
+                            <p class="slds-p-horizontal_small">{con.Email}</p>
+                            <p slot="footer">{con.Email}</p>
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:true={contacts.error}>
+            {contacts.error.body.message}
+        </template>
+    </div>    
+</template>

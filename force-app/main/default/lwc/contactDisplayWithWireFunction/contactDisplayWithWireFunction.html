@@ -1,0 +1,17 @@
+<template>
+    <div class="slds-box" style="background-color: azure;color:black">
+        <h3>Use wire service with JS function to change data</h3>
+        <template if:true={accounts}>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={accounts} for:item="acc">
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_small" key={acc.Id}>
+                        <lightning-card title={acc.Name} key={acc.Id}>
+                            <p class="slds-p-horizontal_small">{acc.Phone}</p>
+                            <p class="slds-p-horizontal_small">{acc.Rating}</p>
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>    
+</template>

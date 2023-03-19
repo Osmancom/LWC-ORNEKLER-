@@ -1,0 +1,41 @@
+<template>
+    <lightning-card> 
+    <lightning-icon icon-name="utility:opportunity" > </lightning-icon>
+    <b><h1>Opportunity Creation using Lightning Record Edit form</h1> </b>  
+    <div class="slds-box">
+             
+             <lightning-record-edit-form object-api-name={oppObject} onsuccess={handleSuccess}>
+            <lightning-messages></lightning-messages>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input-field field-name={nameField}>
+                    </lightning-input-field>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input-field field-name={accNameField}></lightning-input-field>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input-field field-name={closeDateField}></lightning-input-field>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_2-of-3">
+                    <lightning-input-field field-name={descriptionField} value="Sample Description"></lightning-input-field>
+                </div>
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input-field field-name={stageField}></lightning-input-field>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-size_1-of-3">
+                    <lightning-input-field field-name={typeField} value="New Customer"></lightning-input-field>
+                </div>
+                <div class="slds-col slds-size_2-of-3">
+                    <lightning-button variant="brand" type="submit" label="Save" class="slds-p-around_small"></lightning-button>
+                    <lightning-button class="slds-p-around_small" label="Reset" onclick={handleReset} ></lightning-button>
+                </div>
+            </div>
+        </lightning-record-edit-form>
+    </div>
+</lightning-card>
+</template>

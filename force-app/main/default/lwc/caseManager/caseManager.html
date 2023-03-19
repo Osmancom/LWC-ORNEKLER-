@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="CASE MANAGER" icon-name="utility:case" > 
+        
+        <!--More icon please visit : https://www.lightningdesignsystem.com/icons/ -->
+        <div class="slds-box">
+            <lightning-layout multiple-rows="true">
+                <div class="slds-col slds-size_1-of-3">
+                  <lightning-input
+                    type="Number"
+                    placeholder="Case Number"
+                    label="Enter Case Number"
+                    value={inputCaseNumber}
+                    onchange={searchForCase}
+                  ></lightning-input>
+                </div>
+            </lightning-layout>
+            <div class="slds-grid slds-wrap slds-gutters slds-m-top_medium">
+                <template for:each={cases} for:item="eachCase">
+                    <div class="slds-col slds-size_1-of-3" key={eachCase.Id}>
+                        <lightning-card title={eachCase.CaseNumber} key={eachCase.Id}>
+                           
+                             <p class="slds-m-left_medium"><b>Origin: </b> {eachCase.Origin}</p>
+                        <p class="slds-m-left_medium"><b>Subject: </b>  {eachCase.Subject}</p>
+                         <footer slot="footer"><b>Status:</b>{eachCase.Status}</footer>
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

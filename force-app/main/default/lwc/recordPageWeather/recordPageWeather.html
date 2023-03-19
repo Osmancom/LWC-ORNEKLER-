@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title={title}>
+<div class="slds-grid slds-gutters">
+    <div class="slds-col slds-size_6-of-12 slds-p-around_x-small">
+        <lightning-button variant="brand" label="Get Weather Information" title="Primary action" onclick={handleClick} class="slds-align_absolute-center"></lightning-button>
+    </div>
+    <div class="slds-col slds-size_6-of-12 slds-p-around_x-small">
+        <lightning-button variant="brand" label="Send Weather Report" title="Primary action" onclick={handlesendMail} class="slds-align_absolute-center"></lightning-button>
+    </div>
+</div>
+<div class="slds-p-left_medium" > <b>Last Report Sent Date: </b>{infoMail}</div>
+        <lightning-layout>
+                <lightning-layout-item size="3" medium-device-size="4" padding="around-small">
+                    <lightning-card icon-name="standard:topic" title="Temperature" class="titles">
+                        <div class="slds-align_absolute-center color-blue">
+                                {temp}°
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+                <lightning-layout-item size="3" medium-device-size="4" padding="around-small">
+                    <lightning-card icon-name="utility:flow" title="Wind Speed" class="titles">
+                        <div class="slds-align_absolute-center color-grey">
+                                {windSpeed}kmh
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+                <lightning-layout-item size="3" medium-device-size="4" padding="around-small">
+                    <lightning-card icon-name="standard:calibration" title="Humidity" class="titles">
+                        <div class="slds-align_absolute-center color-green">
+                                {humi}% 
+                        </div>
+                    </lightning-card>
+                </lightning-layout-item>
+            </lightning-layout>
+        <lightning-map
+            map-markers={mapMarkers}
+            zoom-level={zoomLevel}>
+        </lightning-map>
+        
+    </lightning-card>
+
+    
+</template>

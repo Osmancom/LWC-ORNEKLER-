@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Account Record Details">
+        <lightning-record-form
+            record-id={accountRecordId}
+            object-api-name={objectApiName}
+            fields={fields}
+            columns="1"
+            mode="view"
+            onsuccess={handleSuccess}>
+            <lightning-input-field
+                field-name="Type"
+                value={accountFields.Type}
+                options={typePicklistValues}>
+            </lightning-input-field>
+        </lightning-record-form>
+    </lightning-card>
+</template>
