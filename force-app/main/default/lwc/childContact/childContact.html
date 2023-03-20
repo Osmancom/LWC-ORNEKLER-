@@ -1,0 +1,56 @@
+<template>
+    <template if:true={relatedContacts.data}>
+        <template for:each={relatedContacts.data} for:item="con">
+            <div key={con.Id}> 
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols" role="grid">
+                    <thead>
+                    <tr class="slds-line-height_reset">
+                    <th class="thClass" scope="col">
+                    <div class="slds-truncate" title="Contact Name">Contact Name</div>
+                    </th>
+                    <th class="thClass" scope="col">
+                    <div class="slds-truncate" title="Mailing Street">Mailing Street</div>
+                    </th>
+                    <th class="thClass" scope="col">
+                    <div class="slds-truncate" title="Mailing City">Mailing City</div>
+                    </th>
+                    <th class="thClass" scope="col">
+                    <div class="slds-truncate" title="Mailing State">Mailing State</div>
+                    </th>
+                    <th class="thClass" scope="col">
+                    <div class="slds-truncate" title="Mailing Country">Mailing Country</div>
+                    </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="slds-hint-parent">
+                    <th data-label="Contact Name" scope="row">
+                    <div class="slds-truncate" title="Contact Name">
+                    <a name={con.Id} onclick={navigateToViewContactPage}>{con.Name}</a>
+                    </div>
+                    </th>
+                    <td data-label="Mailing Street">
+                    <div class="slds-truncate" title="Mailing Street">{con.MailingStreet}</div>
+                    </td>
+                    <td data-label="Mailing City">
+                    <div class="slds-truncate" title="Mailing City">{con.MailingCity}</div>
+                    </td>
+                    <td data-label="Mailing State">
+                    <div class="slds-truncate" title="Mailing State">{con.MailingState}</div>
+                    </td>
+                    <td data-label="Mailing Country">
+                    <div class="slds-truncate" title="Mailing Country">{con.MailingCountry}</div>
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </template>
+        <template if:true={relatedContacts.error}>
+            <p>Sorgulama Hatalı. Lütfen hata mesajını inceleyiniz</p>
+            <p>Hata Mesajı = {relatedContacts.error}</p>
+        </template>
+
+    </template>
+</template>

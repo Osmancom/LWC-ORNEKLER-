@@ -1,0 +1,17 @@
+<template>
+    <div>
+        <lightning-datatable
+            key-field="Id"
+            data={accounts}
+            columns={accountColumns}
+            onrowaction={handleRowAction}>
+        </lightning-datatable>
+
+        <lightning-datatable
+            key-field="Id"
+            data={contacts}
+            columns={contactColumns}
+            onrowaction={handleRowAction}>
+        </lightning-datatable>
+    </div>
+</template>

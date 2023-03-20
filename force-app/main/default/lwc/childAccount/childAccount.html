@@ -1,0 +1,59 @@
+<template>
+    <h2 class="slds-text-heading_medium slds-m-bottom_xx-small">Child Accounts and Related Contacts</h2>
+    <template if:true={childAccounts.data}>
+        <template for:each={childAccounts.data} for:item="childAcc">
+            <div key={childAcc.Id}> 
+            <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols" role="grid" >
+                <thead>
+                <tr class="slds-line-height_reset">
+                <th class="thClass" scope="col">
+                <div class="slds-truncate" title="Account Name">Account Name</div>
+                </th>
+                <th class="thClass" scope="col">
+                <div class="slds-truncate" title="Billing Street">Billing Street</div>
+                </th>
+                <th class="thClass" scope="col">
+                <div class="slds-truncate" title="Billing City">Billing City</div>
+                </th>
+                <th class="thClass" scope="col">
+                <div class="slds-truncate" title="Billing State">Billing State</div>
+                </th>
+                <th class="thClass" scope="col">
+                <div class="slds-truncate" title="Billing Country">Billing Country</div>
+                </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="slds-hint-parent">
+                <th data-label="Account Name" scope="row">
+                 <!-- <lightning-button name={chilAcc.Id} variant="base" onclick={navigateToViewAccountPage}></lightning-button>     -->
+                    <div class="slds-truncate" title="Account Name">
+                <a name={childAcc.Id} onclick={navigateToViewAccountPage}>{childAcc.Name}</a>
+                </div>
+                </th>
+                <td data-label="Billing Street">
+                <div class="slds-truncate" title="Billing Street">{childAcc.BillingStreet}</div>
+                </td>
+                <td data-label="Billing City">
+                <div class="slds-truncate" title="Billing City">{childAcc.BillingCity}</div>
+                </td>
+                <td data-label="Billing State">
+                <div class="slds-truncate" title="Billing State">{childAcc.BillingState}</div>
+                </td>
+                <td data-label="Billing Country">
+                <div class="slds-truncate" title="Billing Country">{childAcc.BillingCountry}</div>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+            <c-child-contact acc-id={childAcc.Id}></c-child-contact>
+        </div>
+
+        </template>
+        <template if:true={childAccounts.error}>
+            <p>Sorgulama Hatalı. Lütfen hata mesajını inceleyiniz</p>
+            <p>Hata Mesajı = {childAccounts.error}</p>
+        </template>
+
+    </template>
+</template>
