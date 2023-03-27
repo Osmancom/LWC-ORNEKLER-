@@ -4,7 +4,7 @@ import {NavigationMixin} from 'lightning/navigation';
 export default class ChildContact extends NavigationMixin(LightningElement) {
 
 @api accId;
-relatedContacts;
+
 
 @wire (getChildContact, {
     childAccId:'$accId'

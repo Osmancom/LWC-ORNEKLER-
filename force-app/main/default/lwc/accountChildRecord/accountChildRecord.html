@@ -1,0 +1,37 @@
+<template>
+    <lightning-card >
+        <div class="slds-box slds-theme_default">
+            <h1 class="slds-text-heading_medium">Account Details</h1>
+            <div class="slds-p-top_medium">
+                <p class="slds-m-bottom_small"><b>Account Name:</b> {accountName}</p>
+                <p class="slds-m-bottom_small"><b>Account Number:</b> {accountNumber}</p>
+            </div>
+            <hr/>
+            <h2 class="slds-text-heading_medium">Child Accounts</h2>
+            <template for:each={accounts} for:item="account">
+                <div key={account.Id} class="slds-box slds-box_x-small slds-theme_shade">
+                    <p><b>Account Name:</b> <a href="javascript:void(0);" data-record-id={account.Id} onclick={navigateToRecord}>{account.Name}</a></p>
+                    <p><b>Account Number:</b> {account.AccountNumber}</p>
+                    <p><b>BillingStreet:</b> {account.BillingStreet}</p>
+                    <p><b>BillingCity:</b> {account.BillingCity}</p>
+                    <p><b>BillingState:</b> {account.BillingState}</p>
+                    <p><b>BillingPostalCode:</b> {account.BillingPostalCode}</p>
+                </div>
+            </template>
+            <hr/>
+            <h2 class="slds-text-heading_medium">Child Contacts</h2>
+            <template for:each={contacts} for:item="contact">
+                <div key={contact.Id} class="slds-box slds-box_x-small slds-theme_shade">
+                    <p><b>Contact Name:</b> <a href="javascript:void(0);" data-record-id={contact.Id} onclick={navigateToRecord}>{contact.Name}</a></p>
+                    <p><b>Email:</b> {contact.Email}</p>
+                    <p><b>Phone:</b> {contact.Phone}</p>
+                    <p><b>MailingStreet:</b> {contact.MailingStreet}</p>
+                    <p><b>MailingCity:</b> {contact.MailingCity}</p>
+                    <p><b>MailingState:</b> {contact.MailingState}</p>
+                    <p><b>MailingPostalCode:</b> {contact.MailingPostalCode}</p>
+
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

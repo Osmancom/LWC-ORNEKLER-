@@ -4,7 +4,7 @@ import {NavigationMixin} from 'lightning/navigation';
 export default class ChildAccount extends NavigationMixin(LightningElement) {
 
     @api recordId;
-    childAccounts;
+    
 
     @wire(getChildAccount, {
         parentAccId:'$recordId'

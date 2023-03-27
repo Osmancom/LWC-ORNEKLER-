@@ -1,17 +1,44 @@
 <template>
     <div>
-        <lightning-datatable
-            key-field="Id"
-            data={accounts}
-            columns={accountColumns}
-            onrowaction={handleRowAction}>
-        </lightning-datatable>
-
-        <lightning-datatable
-            key-field="Id"
-            data={contacts}
-            columns={contactColumns}
-            onrowaction={handleRowAction}>
-        </lightning-datatable>
+        <h1>Child Account Information</h1>
+        <template if:true={childAccounts}>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account Name</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={childAccounts} for:item="account">
+                        <tr key={account.Id}>
+                            <td>
+                                <a href={account.Id} target="_blank">{account.Name}</a>
+                            </td>
+                            <td>{account.BillingStreet}, {account.BillingCity}, {account.BillingState} {account.BillingPostalCode}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+        <template if:false={childAccounts}>
+            <p>No child accounts found.</p>
+        </template>
+        <h1>Child Contact Information</h1>
+        <template if:true={childContacts}>
+            <template for:each={childContacts} for:item="contact">
+                <div key={contact.Id}>
+                    <h2>
+                        <a href={contact.Id} target="_blank">{contact.Name}</a>
+                    </h2>
+                    <p>Email: {contact.Email}</p>
+                    <p>Phone: {contact.Phone}</p>
+                    <p>Address: {contact.MailingStreet}, {contact.MailingCity}, {contact.MailingState} {contact.MailingPostalCode}</p>
+                </div>
+            </template>
+        </template>
+        <template if:false={childContacts}>
+            <p>No child contacts found.</p>
+        </template>
     </div>
 </template>

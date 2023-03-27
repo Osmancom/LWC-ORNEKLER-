@@ -1,58 +1,48 @@
-import { LightningElement, wire, api } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import getAccountsWithContacts from '@salesforce/apex/AccountContactsController.getAccountsWithContacts';
+import getChildAccounts from '@salesforce/apex/AccountChildRecords.getChildAccounts';
+import getChildContacts from '@salesforce/apex/AccountChildRecords.getChildContacts';
 
-const ACCOUNT_COLUMNS = [
-    { label: 'Account Name', fieldName: 'Name', type: 'text' },
-    { label: 'Account Address', fieldName: 'Address', type: 'text' },
-    { type: 'action', typeAttributes: { rowActions: [] } }
-];
+export default class ChildAccountsAndContacts extends NavigationMixin(LightningElement) {
+    @track childAccounts;
+    @track childContacts;
+    @track recordId;
+    error;
 
-const CONTACT_COLUMNS = [
-    { label: 'Contact Name', fieldName: 'Name', type: 'text' },
-    { label: 'Contact Address', fieldName: 'Address', type: 'text' },
-    { type: 'action', typeAttributes: { rowActions: [] } }
-];
-
-export default class AccountContacts extends NavigationMixin(LightningElement) {
-    @api recordId;
-    accounts = [];
-    contacts = [];
-    accountColumns = ACCOUNT_COLUMNS;
-    contactColumns = CONTACT_COLUMNS;
-
-    @wire(getAccountsWithContacts, {accountId: '$recordId'})
-    wiredAccounts({error, data}) {
+    @wire(getChildAccounts, {accountId: '$recordId'})
+    wiredChildAccounts({error, data}) {
         if (data) {
-            this.accounts = data.accounts.map(account => ({
-                Id: account.Id,
-                Name: account.Name,
-                Address: `${account.BillingStreet}, ${account.BillingCity}, ${account.BillingState}, ${account.BillingCountry}, ${account.BillingPostalCode}`
-            }));
-            this.contacts = data.contacts.map(contact => ({
-                Id: contact.Id,
-                Name: contact.Name,
-                Address: `${contact.MailingStreet}, ${contact.MailingCity}, ${contact.MailingState}, ${contact.MailingCountry}, ${contact.MailingPostalCode}`
-            }));
+            this.childAccounts = data;
+            this.error = undefined;
         } else if (error) {
-            console.log(error);
+            this.error = error;
+            this.childAccounts = undefined;
         }
     }
 
-    handleRowAction(event) {
-        const recordId = event.detail.row.Id;
-        const pageName = 'record';
-        const navigationParams = {
-            recordId: recordId,
-            actionName: 'view'
-        };
+    handleAccountClick(event) {
+        event.preventDefault();
+        let accountId = event.currentTarget.dataset.id;
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
             attributes: {
-                pageName: pageName
-            },
-            state: navigationParams
+                recordId: accountId,
+                objectApiName: 'Account',
+                actionName: 'view'
+            }
         });
     }
+
+    @wire(getChildContacts, {accountId: '$recordId'})
+    wiredChildContacts({error, data}) {
+        if (data) {
+            this.childContacts = data;
+            this.error = undefined;
+        } else if (error) {
+            this.error = error;
+            this.childContacts = undefined;
+        }
+    }
 }
+
 
